@@ -1,1 +1,1 @@
-# rock-paper-scissors
+First JavaScript assignment from the Odin Project
