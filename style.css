@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Noto Sans", sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    background-color: rgb(95, 109, 162);
+}
+
+h1 {
+    margin-top: 90px;
+    margin-bottom: 20px;
+    font-weight: 900;
+    font-size: 50px;
+    text-shadow: 3px 2px #000000;
+    color: whitesmoke;
+}
+
+
+.rulebox {
+    font-size: 26px;
+    font-weight: bold;
+    color: whitesmoke;
+    text-shadow: 1px 1px #000000;
+}
+
+#container-game {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: 3rem;
+    margin-top: 7%;
+    margin-bottom: 3rem;
+}
+
+img {
+    height: 400px;
+    width: 350px;
+    border-radius: 13px;
+    box-shadow: 0 25px 30px rgba(0, 0, 0, 0.35);
+    border: whitesmoke solid 1px;
+}
+
+img .paper {
+    padding: 100px;
+}
+
+.rock,
+.paper,
+.scissors {
+    border: none;
+    box-shadow: 2px 5px 5px 5px rgba(0, 0, 0, 0.1);
+    height: 400px;
+    width: 350px;
+    border-radius: 13px;
+    cursor: pointer;
+}
+
+#container-results {
+    font-size: 26px;
+    color: whitesmoke;
+}
