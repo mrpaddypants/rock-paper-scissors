@@ -1,63 +1,77 @@
-let rounds = 0;
+let roundsPlayed = 0;
 let playerWins = 0;
 let computerWins = 0;
+let userSelection = "";
+
+
+const rockBtn = document.querySelector(".rock");
+const paperBtn = document.querySelector(".paper");
+const scissorsBtn = document.querySelector(".scissors");
+
+const gameContainer = document.querySelector("#container-game")
+const resultsPanel = document.querySelector("#container-results");
+
+rockBtn.addEventListener("click", () => {
+    userSelection = "Rock";
+    playRound();
+});
+
+paperBtn.addEventListener("click", () => {
+    userSelection = "Paper";
+    playRound();
+});
+
+scissorsBtn.addEventListener("click", () => {
+    userSelection = "Scissors";
+    playRound();
+});
 
 function getComputerChoice() {
     //computer gets an array of choices and chooses a random one
     let choices = ['Rock', 'Paper', 'Scissors'];
     let computerChoice = choices[Math.floor(Math.random()*choices.length)];
-    return computerChoice;
+    return computerChoice;    
+}
+
+function playRound() {
+    let computerSelection = getComputerChoice();
+    
+    if (userSelection === computerSelection) {
+        resultsPanel.textContent = ("You drew. The Round doesn't count. Play again");
+
+    } else if (userSelection === 'Rock' && computerSelection === 'Scissors' || userSelection === 'Scissors' && computerSelection === 'Paper' || userSelection === 'Paper' && computerSelection === 'Rock') {
+        playerWins++;
+        roundsPlayed++;
+        resultsPanel.textContent = (`rounds played: ${roundsPlayed}\ncurrent score you ${playerWins} : ${computerWins} computer`);
+    } else if (userSelection === 'Rock' && computerSelection === 'Paper' || userSelection === 'Paper' && computerSelection === 'Scissors' || userSelection === 'Scissors' && computerSelection === 'Rock') {
+        computerWins++;
+        roundsPlayed++;
+        resultsPanel.textContent = (`rounds played: ${roundsPlayed}\ncurrent score you ${playerWins} : ${computerWins} computer`);
+    } 
+
+    endOfGame()
+}
+
+function endOfGame () {
+    if (playerWins === 3) {
+        resultsPanel.textContent = (`Congratulations! You won the game! The final score was: You ${playerWins} : ${computerWins} Computer.`);
+    } else if (computerWins === 3) {
+        resultsPanel.textContent = (`Oh no! You lost the game! The final score was: You ${playerWins} : ${computerWins} Computer.`);
+    }
+
+    if (playerWins === 3 || computerWins === 3) {
+        rockBtn.remove();
+        paperBtn.remove();
+        scissorsBtn.remove();
+
+        const playAgainBtn = document.createElement("button");
+        playAgainBtn.textContent = "Play Again!";
+        gameContainer.appendChild(playAgainBtn);
+        playAgainBtn.addEventListener("click", () => {
+            location.reload();
+        });
+    }
+
     
 }
 
-function toTitleCase(str) {
-    return str.replace(
-      /\w\S*/g,
-      function(txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      }
-    );
-  }
-
-function playRound() {
-    //gets user's choice and converts it into a title
-    let computerSelection = getComputerChoice();
-    let userSelection = prompt('What is your choice - rock, paper or scissors? ');
-    userSelection = toTitleCase(userSelection);
-    console.log(userSelection)
-
-    if (userSelection === computerSelection) {
-        alert('You drew. Play again.')
-        playRound();
-    } else if (userSelection === 'Rock' && computerSelection === 'Scissors' || userSelection === 'Scissors' && computerSelection === 'Paper' || userSelection === 'Paper' && computerSelection === 'Rock') {
-        playerWins++;
-        rounds++;
-    } else if (userSelection === 'Rock' && computerSelection === 'Paper' || userSelection === 'Paper' && computerSelection === 'Scissors' || userSelection === 'Scissors' && computerSelection === 'Rock') {
-        computerWins++;
-        rounds++;
-    }
-
-    }
-
-
-
-
-
-function game() {
-//creates a loop so that 5 rounds can be played
-    while (rounds < 5) {
-    playRound()
-    }
-    //when 5 rounds are played the game ends and score is displayed
-    if (rounds === 5) {
-        console.log("The game is finished.")
-        if (playerWins > computerWins) {
-            console.log(`You won!! The score was ${playerWins} : ${computerWins}`)
-        } else if (computerWins > playerWins) {
-            console.log(`You lost :( The score was ${playerWins} : ${computerWins}`)
-        }
-    }
-}
-
-
-game()
