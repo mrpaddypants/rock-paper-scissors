@@ -33,7 +33,9 @@ function playGame() {
         let computerSelection = getComputerChoice();
         if (userSelection === computerSelection) {
             roundsPlayed++;
-        } else if ((userSelection == "rock" && computerSelection == "scissors") || (userSelection == "scissors" && computerSelection == "paper") || (userSelection == "paper" && computerSelection == "rock")) {
+        } else if ((userSelection == "rock" && computerSelection == "scissors") || 
+            (userSelection == "scissors" && computerSelection == "paper") || 
+            (userSelection == "paper" && computerSelection == "rock")) {
             userScore++;
             roundsPlayed++;
         } else {
