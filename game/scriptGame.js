@@ -54,4 +54,4 @@ function playGame() {
     determineWinner();
 }
 
-playGame();
+//playGame();
