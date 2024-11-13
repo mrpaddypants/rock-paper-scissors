@@ -54,7 +54,7 @@ function playGame() {
     }  
 
     function endGame() {
-        if (userScore === 5 || computerScore === 5) {
+        if (userScore === 5) {
             endContainer.remove();
             rockBtn.remove();
             scissorBtn.remove();
@@ -82,6 +82,32 @@ function playGame() {
             });
 
 
+        } else if (computerScore === 5) {
+            endContainer.remove();
+            rockBtn.remove();
+            scissorBtn.remove();
+            paperBtn.remove();
+
+            const endMessage = document.createElement("div");
+            titleContainer.appendChild(endMessage);
+            endMessage.textContent = `Oh nooo - you lost!`;
+            endMessage.style.cssText = "font-size: 100px; color: #8BE200; margin-top: 7rem; font-family: Arial, Helvetica, sans-serif;";
+
+            const playAgainBtn = document.createElement("button");
+
+            playAgainBtn.addEventListener("mouseover", () => {
+                playAgainBtn.style.cssText = "background-color: #8BE200;";
+                playAgainBtn.addEventListener("mouseout", () => {
+                    playAgainBtn.style.cssText = "background-color: #818589;"
+                });
+            });
+            titleContainer.appendChild(playAgainBtn);
+            playAgainBtn.className = "playAgainBtn";
+            playAgainBtn.textContent = "Play Again";
+
+            playAgainBtn.addEventListener("click", () => {
+                location.reload()
+            });
         }
     }
 
